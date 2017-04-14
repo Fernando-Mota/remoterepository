@@ -58,6 +58,11 @@ public class MovieOverviewFragment extends Fragment implements MovieRemoteListen
     public void onFindById(Movie movie) {
         this.movie = movie;
 
+        if (movie == null) {
+            Toast.makeText(getContext(), "Este filme ainda não possui uma sinopse!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         overviewText.setText("Duração: " + movie.getDuration() + "\n\n" + "Sinopse: " + movie.getOverview());
         tituloOverview.setText(movie.getTitle() + " - " + movie.getReleaseYear());
 

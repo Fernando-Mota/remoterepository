@@ -57,7 +57,7 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
 
     @Override
     public void initializeList() {
-        movieList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        //movieList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     }
 
     @Override
@@ -75,10 +75,9 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
 
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         presenter.listMovies(this);
-        Toast.makeText(getContext(), "OnResume", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -89,6 +88,7 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
 
     @Override
     public void onFindAll(List<Movie> movies) {
+        movieList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         movieList.setAdapter(new MovieListAdapter(movies, presenter, context, this));
     }
 
