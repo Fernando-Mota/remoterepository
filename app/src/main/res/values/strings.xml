@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Sky Test</string>
+
+    <string name="base_url">https://sky-exercise.herokuapp.com</string>
+
+    <string name="movie_remote_context">/api/Movies</string>
+    <string name="movie_remote_read">/api/Movies/{id}</string>
+</resources>
