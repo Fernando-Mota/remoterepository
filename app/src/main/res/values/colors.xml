@@ -3,4 +3,10 @@
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorFontList">#E0E0E0</color>
+    <color name="colorFontOverview">#FFFFFF</color>
+
+    <color name="colorListBackground">#212121</color>
+    <color name="colcorOverviewBackground">#000000</color>
 </resources>

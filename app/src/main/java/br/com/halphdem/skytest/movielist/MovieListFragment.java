@@ -23,9 +23,9 @@ import br.com.halphdem.skytest.movieoverview.MovieOverviewFragment;
  * Created by fernando on 12/04/17.
  */
 
-public class MovieListFragment extends Fragment implements MovieListContract.View, MovieRemoteListenersContract.MovieFindAllListener, ItemClickListener {
+public class MovieListFragment extends Fragment implements MovieListContract.View, MovieRemoteListenersContract.MovieFindAllListener, ItemClickCallback {
 
-    private MovieListPresenter presenter;
+    private MovieListContract.Presenter presenter;
 
     private RecyclerView movieList;
 
@@ -50,14 +50,8 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
         startPresenter();
 
         movieList = (RecyclerView) view.findViewById(R.id.movie_list);
-        initializeList();
 
         return view;
-    }
-
-    @Override
-    public void initializeList() {
-        //movieList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     }
 
     @Override
@@ -69,7 +63,7 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.frag_fade_in, R.anim.frag_fade_out, R.anim.frag_fade_in, R.anim.frag_fade_out);
         transaction.replace(R.id.view_container, newFragment);
-        transaction.addToBackStack("list_to_overview");
+        transaction.addToBackStack(getString(R.string.list_to_overview_fragment));
         transaction.commit();
     }
 
@@ -94,8 +88,7 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
 
     @Override
     public void onFindAllError(Throwable throwable) {
-        Toast.makeText(getContext(), "Erro ao retornar lista!", Toast.LENGTH_LONG).show();
-
+        Toast.makeText(getContext(), getString(R.string.erro_lista_retorno_lista), Toast.LENGTH_LONG).show();
     }
 
     @Override

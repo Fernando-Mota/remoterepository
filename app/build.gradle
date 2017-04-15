@@ -15,9 +15,23 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField("String", "BASE_URL", '"https://sky-exercise.herokuapp.com/api/"')
+            buildConfigField("String", "MOVIE_CONTEXT", '"Movies"')
+            buildConfigField("String", "MOVIE_READ", '"Movies/{id}"')
         }
+
+        debug {
+            buildConfigField("String", "BASE_URL", '"https://sky-exercise.herokuapp.com/api/"')
+            buildConfigField("String", "MOVIE_CONTEXT", '"Movies"')
+            buildConfigField("String", "MOVIE_READ", '"Movies/{id}"')
+        }
+
     }
 }
+
+
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -39,6 +53,8 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
 
+
     testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:1.10.19'
+    testCompile 'org.mockito:mockito-core:2.7.22'
+    androidTestCompile 'org.mockito:mockito-android:2.7.22'
 }

@@ -3,8 +3,8 @@
     android:id="@+id/coordinatorLayout_movie_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#212121"
-    android:padding="5dp"
+    android:background="@color/colorListBackground"
+    android:padding="@dimen/listPadding"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
 
         <TextView
             android:text="Uma seleção de filmes inperdíveis:"
-            android:textColor="#E0E0E0"
+            style="@style/ListFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:paddingLeft="10dp"
+        android:paddingLeft="@dimen/recyclerViewPadding"
         android:scrollbars="vertical"
         >
 

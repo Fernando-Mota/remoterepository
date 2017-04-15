@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    android:background="#000"
+    android:padding="@dimen/overviewPadding"
+    android:background="@color/colcorOverviewBackground"
     android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp">
+        android:layout_height="@dimen/overviewTitleAreaHeight">
 
         <ImageView
             android:id="@+id/imagem_topo"
@@ -24,8 +24,7 @@
                 android:id="@+id/movie_overview_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"/>
+                style="@style/OverviewTitleFont"/>
 
         </RelativeLayout>
     </FrameLayout>
@@ -42,8 +41,7 @@
 
             <TextView
                 android:id="@+id/movie_overview"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
+                style="@style/OverviewBodyFont"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
     </FrameLayout>

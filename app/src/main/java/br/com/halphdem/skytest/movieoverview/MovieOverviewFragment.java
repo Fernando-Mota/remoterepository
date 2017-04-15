@@ -20,7 +20,7 @@ import br.com.halphdem.skytest.movie.data.remote.MovieRemoteListenersContract;
 
 public class MovieOverviewFragment extends Fragment implements MovieRemoteListenersContract.MovieFindByIdListener, MovieOverviewContract.View {
 
-    private MovieOverviewPresenter presenter;
+    private MovieOverviewContract.Presenter presenter;
 
     private Movie movie;
 
@@ -59,14 +59,15 @@ public class MovieOverviewFragment extends Fragment implements MovieRemoteListen
         this.movie = movie;
 
         if (movie == null) {
-            Toast.makeText(getContext(), "Este filme ainda não possui uma sinopse!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.erro_overview_sem_sinopse), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        overviewText.setText("Duração: " + movie.getDuration() + "\n\n" + "Sinopse: " + movie.getOverview());
-        tituloOverview.setText(movie.getTitle() + " - " + movie.getReleaseYear());
+        overviewText.setText(String.format(getString(R.string.texto_overview), movie.getDuration(), movie.getOverview()));
+        tituloOverview.setText(String.format(getString(R.string.titulo_no_overview), movie.getTitle(), movie.getReleaseYear()));
 
         imagemBody.setAlpha(0.4F);
+
         presenter.loadImage(getContext(), movie.getBackdropsUris().get(1), imagemBody);
         presenter.loadImage(getContext(), movie.getBackdropsUris().get(0), imagemTopo);
 
@@ -74,7 +75,7 @@ public class MovieOverviewFragment extends Fragment implements MovieRemoteListen
 
     @Override
     public void onFindByIdError(Throwable throwable) {
-        Toast.makeText(getContext(), "Erro ao carregar dados do filme!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), getString(R.string.erro_overview_carregar_filme), Toast.LENGTH_LONG).show();
     }
 
     @Override

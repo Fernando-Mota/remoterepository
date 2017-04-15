@@ -21,17 +21,17 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     private List<Movie> movies;
 
-    private MovieListPresenter presenter;
+    private MovieListContract.Presenter presenter;
 
     private Context context;
 
-    private ItemClickListener itemClickListener;
+    private ItemClickCallback itemClickCallback;
 
-    public MovieListAdapter(List<Movie> movies, MovieListPresenter presenter, Context context, ItemClickListener itemClickListener) {
+    public MovieListAdapter(List<Movie> movies, MovieListContract.Presenter presenter, Context context, ItemClickCallback itemClickCallback) {
         this.movies = movies;
         this.presenter = presenter;
         this.context = context;
-        this.itemClickListener = itemClickListener;
+        this.itemClickCallback = itemClickCallback;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         holder.movieCover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemClickListener.onItemClick(id);
+                itemClickCallback.onItemClick(id);
             }
         });
 

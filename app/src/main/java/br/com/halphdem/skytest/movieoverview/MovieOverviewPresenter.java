@@ -5,6 +5,7 @@ import android.widget.ImageView;
 
 import br.com.halphdem.skytest.movie.data.MovieRepository;
 import br.com.halphdem.skytest.movie.data.remote.MovieRemoteListenersContract;
+import br.com.halphdem.skytest.movie.data.remote.MovieRemoteRepository;
 import retrofit2.Retrofit;
 
 /**
@@ -15,9 +16,17 @@ public class MovieOverviewPresenter implements MovieOverviewContract.Presenter {
 
     private MovieRepository repository;
 
+    public MovieOverviewPresenter() {
+
+    }
+
+    public MovieOverviewPresenter(MovieRepository movieRepository) {
+        this.repository = movieRepository;
+    }
+
     @Override
     public void start() {
-        repository = new MovieRepository();
+        repository = new MovieRepository(new MovieRemoteRepository());
     }
 
     @Override

@@ -25,6 +25,10 @@ public class MovieRemoteRepository {
         remoteRepository = RetrofitProvider.retrofit.create(AbstractMovieRemoteRepository.class);
     }
 
+    public MovieRemoteRepository(AbstractMovieRemoteRepository remoteRepository) {
+        this.remoteRepository = remoteRepository;
+    }
+
     public void findAll(final MovieRemoteListenersContract.MovieFindAllListener listener) {
         remoteRepository.findAll().enqueue(new Callback<List<Movie>>() {
             @Override

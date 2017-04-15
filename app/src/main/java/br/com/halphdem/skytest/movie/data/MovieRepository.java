@@ -15,8 +15,8 @@ public class MovieRepository {
 
     private MovieRemoteRepository remoteRepository;
 
-    public MovieRepository() {
-        this.remoteRepository = new MovieRemoteRepository();
+    public MovieRepository(MovieRemoteRepository movieRemoteRepository) {
+        this.remoteRepository = movieRemoteRepository;
     }
 
     public void findAll(MovieRemoteListenersContract.MovieFindAllListener listener) {

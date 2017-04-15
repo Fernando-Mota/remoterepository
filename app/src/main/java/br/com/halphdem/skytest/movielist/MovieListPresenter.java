@@ -8,6 +8,7 @@ import java.util.List;
 import br.com.halphdem.skytest.movie.data.Movie;
 import br.com.halphdem.skytest.movie.data.MovieRepository;
 import br.com.halphdem.skytest.movie.data.remote.MovieRemoteListenersContract;
+import br.com.halphdem.skytest.movie.data.remote.MovieRemoteRepository;
 import retrofit2.Retrofit;
 
 /**
@@ -18,10 +19,16 @@ public class MovieListPresenter implements MovieListContract.Presenter {
 
     private MovieRepository repository;
 
+    public MovieListPresenter() {
+    }
+
+    public MovieListPresenter(MovieRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public void start() {
-        repository = new MovieRepository();
+        repository = new MovieRepository(new MovieRemoteRepository());
     }
 
     @Override

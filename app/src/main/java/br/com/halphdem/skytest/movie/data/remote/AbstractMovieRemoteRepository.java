@@ -2,6 +2,7 @@ package br.com.halphdem.skytest.movie.data.remote;
 
 import java.util.List;
 
+import br.com.halphdem.skytest.BuildConfig;
 import retrofit2.Call;
 import retrofit2.http.*;
 import retrofit2.http.Path;
@@ -12,9 +13,9 @@ import retrofit2.http.Path;
 
 public interface AbstractMovieRemoteRepository {
 
-    @GET(MovieRemoteContext.CONTEXT)
+    @GET(BuildConfig.MOVIE_CONTEXT)
     public Call<List<br.com.halphdem.skytest.movie.data.Movie>> findAll();
 
-    @GET(MovieRemoteContext.READ)
+    @GET(BuildConfig.MOVIE_READ)
     Call<br.com.halphdem.skytest.movie.data.Movie> findById(@Path("id") String id);
 }

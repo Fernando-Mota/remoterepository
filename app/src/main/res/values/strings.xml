@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">Sky Test</string>
+    
+    <string name="list_to_overview_fragment">list_to_overview</string>
 
-    <string name="base_url">https://sky-exercise.herokuapp.com</string>
 
-    <string name="movie_remote_context">/api/Movies</string>
-    <string name="movie_remote_read">/api/Movies/{id}</string>
+    <string name="erro_lista_retorno_lista">Erro ao retornar lista!</string>
+    <string name="erro_overview_sem_sinopse">Este filme ainda não possui uma sinopse!</string>
+    <string name="erro_overview_carregar_filme">Erro ao carregar dados do filme!</string>
+    
+    <string name="texto_overview">"Duração: %1$s \n\n Sinopse: %2$s"</string>
+    <string name="titulo_no_overview">"%1$s - %2$s"</string>
 </resources>

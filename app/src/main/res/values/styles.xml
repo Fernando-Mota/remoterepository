@@ -7,5 +7,21 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    
+    
+    <style name="ListFont" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/colorFontList</item>
+        <item name="android:textSize">@dimen/fontList</item>
+    </style>
+
+    <style name="OverviewBodyFont" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">@dimen/fontOverviewBody</item>
+        <item name="android:textColor">@color/colorFontOverview</item>
+    </style>
+
+    <style name="OverviewTitleFont" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/colorFontOverview</item>
+        <item name="android:textSize">@dimen/fontOverviewTitle</item>
+    </style>
 
 </resources>

@@ -1,4 +1,4 @@
-package br.com.halphdem.skytest;
+package br.com.halphdem.skytest.infra;
 
 /**
  * Created by fernando on 12/04/17.
