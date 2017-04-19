@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,8 @@ import br.com.halphdem.skytest.movie.data.MovieRepository;
 import br.com.halphdem.skytest.movie.data.remote.AbstractMovieRemoteRepository;
 import br.com.halphdem.skytest.movie.data.remote.MovieRemoteListenersContract;
 import br.com.halphdem.skytest.movie.data.remote.MovieRemoteRepository;
+import retrofit2.Call;
+import retrofit2.Response;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.times;
@@ -78,5 +81,36 @@ public class MovieRepositoryTest {
         movieRepository.loadRemoteImage(context, uri, destination);
 
         verify(movieRemoteRepository, times(1)).loadRemoteImage(context, uri, destination);
+    }
+
+    @Test
+    public void testaAbstractRepositoryFindAll() {
+        AbstractMovieRemoteRepository repository = RetrofitProvider.retrofit.create(AbstractMovieRemoteRepository.class);
+
+        Call<List<Movie>> call = repository.findAll();
+
+        try {
+            Response<List<Movie>> response = call.execute();
+            List<Movie> movies = response.body();
+            assertTrue(movies.size() == 10);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testaAbstractRepositoryFindById() {
+        AbstractMovieRemoteRepository repository = RetrofitProvider.retrofit.create(AbstractMovieRemoteRepository.class);
+
+        Call<Movie> call = repository.findById("090f0d8fs9d0dfdf");
+
+        try {
+            Response<Movie> response = call.execute();
+            Movie movie = response.body();
+
+            assertTrue(movie.getTitle().equals("Doutor Estranho"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
