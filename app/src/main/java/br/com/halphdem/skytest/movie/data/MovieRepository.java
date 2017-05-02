@@ -3,6 +3,8 @@ package br.com.halphdem.skytest.movie.data;
 import android.content.Context;
 import android.widget.ImageView;
 
+import javax.inject.Inject;
+
 import br.com.halphdem.skytest.movie.data.remote.MovieRemoteListenersContract;
 import br.com.halphdem.skytest.movie.data.remote.MovieRemoteRepository;
 import retrofit2.Retrofit;
@@ -15,6 +17,7 @@ public class MovieRepository {
 
     private MovieRemoteRepository remoteRepository;
 
+    @Inject
     public MovieRepository(MovieRemoteRepository movieRemoteRepository) {
         this.remoteRepository = movieRemoteRepository;
     }

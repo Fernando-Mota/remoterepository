@@ -10,7 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
 import br.com.halphdem.skytest.R;
+import br.com.halphdem.skytest.ViewContainer;
+import br.com.halphdem.skytest.di.movieoverview.DaggerMovieOverviewContponent;
+import br.com.halphdem.skytest.di.movieoverview.MovieOverviewModule;
 import br.com.halphdem.skytest.movie.data.Movie;
 import br.com.halphdem.skytest.movie.data.remote.MovieRemoteListenersContract;
 
@@ -20,7 +25,8 @@ import br.com.halphdem.skytest.movie.data.remote.MovieRemoteListenersContract;
 
 public class MovieOverviewFragment extends Fragment implements MovieRemoteListenersContract.MovieFindByIdListener, MovieOverviewContract.View {
 
-    private MovieOverviewContract.Presenter presenter;
+    @Inject
+    MovieOverviewContract.Presenter presenter;
 
     private Movie movie;
 
@@ -37,7 +43,8 @@ public class MovieOverviewFragment extends Fragment implements MovieRemoteListen
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.movie_overview, container, false);
 
-        startPresenter();
+        DaggerMovieOverviewContponent.builder().movieOverviewModule(new MovieOverviewModule())
+                .movieRepositoryComponent(ViewContainer.getMovieRepositoryComponent()).build().inject(this);
 
         imagemTopo = (ImageView) view.findViewById(R.id.imagem_topo);
         imagemBody = (ImageView) view.findViewById(R.id.imagem_body);
@@ -76,11 +83,5 @@ public class MovieOverviewFragment extends Fragment implements MovieRemoteListen
     @Override
     public void onFindByIdError(Throwable throwable) {
         Toast.makeText(getContext(), getString(R.string.erro_overview_carregar_filme), Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void startPresenter() {
-        presenter = new MovieOverviewPresenter();
-        presenter.start();
     }
 }

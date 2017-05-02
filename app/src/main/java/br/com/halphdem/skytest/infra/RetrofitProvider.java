@@ -6,17 +6,16 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by fernando on 14/04/17.
+ * Created by fernando on 02/05/17.
  */
 
 public interface RetrofitProvider {
 
-    public static final OkHttpClient client = new OkHttpClient();
+    OkHttpClient client = new OkHttpClient();
 
-    public static final Retrofit retrofit = new Retrofit.Builder()
+    Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build();
-
 }

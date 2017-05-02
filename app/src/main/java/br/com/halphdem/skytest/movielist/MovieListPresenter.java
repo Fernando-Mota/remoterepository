@@ -5,6 +5,8 @@ import android.widget.ImageView;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import br.com.halphdem.skytest.movie.data.Movie;
 import br.com.halphdem.skytest.movie.data.MovieRepository;
 import br.com.halphdem.skytest.movie.data.remote.MovieRemoteListenersContract;
@@ -17,27 +19,20 @@ import retrofit2.Retrofit;
 
 public class MovieListPresenter implements MovieListContract.Presenter {
 
-    private MovieRepository repository;
+    private MovieRepository movieRepository;
 
-    public MovieListPresenter() {
-    }
-
-    public MovieListPresenter(MovieRepository repository) {
-        this.repository = repository;
-    }
-
-    @Override
-    public void start() {
-        repository = new MovieRepository(new MovieRemoteRepository());
+    @Inject
+    public MovieListPresenter(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
     }
 
     @Override
     public void listMovies(MovieRemoteListenersContract.MovieFindAllListener listener) {
-        repository.findAll(listener);
+        movieRepository.findAll(listener);
     }
 
     @Override
     public void loadImage(Context context, String imageUri, ImageView destination) {
-        repository.loadRemoteImage(context, imageUri, destination);
+        movieRepository.loadRemoteImage(context, imageUri, destination);
     }
 }

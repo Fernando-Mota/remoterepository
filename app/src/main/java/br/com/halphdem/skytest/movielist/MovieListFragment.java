@@ -14,7 +14,12 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import br.com.halphdem.skytest.R;
+import br.com.halphdem.skytest.ViewContainer;
+import br.com.halphdem.skytest.di.movielist.DaggerMovieListComponent;
+import br.com.halphdem.skytest.di.movielist.MovieListModule;
 import br.com.halphdem.skytest.movie.data.Movie;
 import br.com.halphdem.skytest.movie.data.remote.MovieRemoteListenersContract;
 import br.com.halphdem.skytest.movieoverview.MovieOverviewFragment;
@@ -25,7 +30,8 @@ import br.com.halphdem.skytest.movieoverview.MovieOverviewFragment;
 
 public class MovieListFragment extends Fragment implements MovieListContract.View, MovieRemoteListenersContract.MovieFindAllListener, ItemClickCallback {
 
-    private MovieListContract.Presenter presenter;
+    @Inject
+    MovieListContract.Presenter presenter;
 
     private RecyclerView movieList;
 
@@ -47,7 +53,9 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.movie_list, container, false);
 
-        startPresenter();
+        DaggerMovieListComponent.builder()
+                .movieListModule(new MovieListModule())
+                .movieRepositoryComponent(ViewContainer.getMovieRepositoryComponent()).build().inject(this);
 
         movieList = (RecyclerView) view.findViewById(R.id.movie_list);
 
@@ -72,12 +80,6 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
     public void onStart() {
         super.onStart();
         presenter.listMovies(this);
-    }
-
-    @Override
-    public void startPresenter() {
-        presenter = new MovieListPresenter();
-        presenter.start();
     }
 
     @Override

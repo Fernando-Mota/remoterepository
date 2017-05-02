@@ -7,7 +7,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import br.com.halphdem.skytest.infra.RetrofitProvider;
+import javax.inject.Inject;
+
 import br.com.halphdem.skytest.movie.data.Movie;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,10 +22,7 @@ public class MovieRemoteRepository {
 
     private AbstractMovieRemoteRepository remoteRepository;
 
-    public MovieRemoteRepository() {
-        remoteRepository = RetrofitProvider.retrofit.create(AbstractMovieRemoteRepository.class);
-    }
-
+    @Inject
     public MovieRemoteRepository(AbstractMovieRemoteRepository remoteRepository) {
         this.remoteRepository = remoteRepository;
     }
